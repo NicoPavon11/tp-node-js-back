@@ -10,13 +10,13 @@ Cuando se haga una solicitud GET a la ruta ('/autos/), se ejecutara esta funcion
 */
 router.get('/', autosController.getAllAutos);
 
-//router.get('/:id', autosController.getAuotsById);
+router.get('/:id', autosController.getAutoById);
 
 //router.post('/', autosController.createAuto);
 
 //router.put('/:id', autosController.updateAuto);
 
-//router.delete('/:id', autosController.deleteAuto);
+router.delete('/:id', autosController.deleteAuto);
 
 //exporta el router para que pueda ser utilizado en otros archivos
 module.exports = router;
