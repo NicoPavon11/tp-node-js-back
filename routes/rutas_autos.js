@@ -12,9 +12,9 @@ router.get('/', autosController.getAllAutos);
 
 router.get('/:id', autosController.getAutoById);
 
-//router.post('/', autosController.createAuto);
+router.post('/', autosController.createAuto);
 
-//router.put('/:id', autosController.updateAuto);
+router.put('/:id', autosController.updateAuto);
 
 router.delete('/:id', autosController.deleteAuto);
 
