@@ -1,5 +1,8 @@
 //importamos el objeto db
-const db = require ('../db/db');
+const db = require('../db/db');
+
+
+
 
 const getAllAutos = (req, res) => {
     const sql = 'SELECT * FROM autos';
@@ -26,20 +29,36 @@ const deleteAuto = (req, res) => {
 };
 const createAuto = (req, res) => {
     const sql = 'INSERT INTO autos ( foto, nombre, descripcion, anio, kilometraje, precio) VALUES (?,?,?,?,?,?)';
-    const {foto, nombre, descripcion, anio, kilometraje, precio} = req.body;
+    const foto = `/images/${req.file.filename}`;
+    const {nombre, descripcion, anio, kilometraje, precio} = req.body;
     db.query(sql, [foto, nombre, descripcion, anio, kilometraje, precio], (err, result) => {
         if(err) throw err;
         res.json({'message': 'Auto creado', 'auto.Id': result.insertID});
     });
 };
 const updateAuto = (req, res) => {
-    const {foto, nombre, descripcion, anio, kilometraje, precio} = req.body;
+    const {nombre, descripcion, anio, kilometraje, precio} = req.body;
     const { id } = req.params;
-    const sql = 'UPDATE autos SET foto = ?, nombre = ?, descripcion = ?, anio = ?, kilometraje = ?, precio = ? WHERE id = ?';
-    db.query(sql, [foto, nombre, descripcion, anio, kilometraje, precio, id], (err, result) => {
+    let sql
+    
+    if(req.file){
+        const foto = `/images/${req.file.filename}`;
+        
+        sql = 'UPDATE autos SET foto = ?, nombre = ?, descripcion = ?, anio = ?, kilometraje = ?, precio = ? WHERE id = ?';
+        db.query(sql, [foto, nombre, descripcion, anio, kilometraje, precio, id], (err, result) => {
         if(err) throw err;
         res.json({'message': 'Auto modificado'});
-    });
+        });
+    } else{
+        
+        sql = 'UPDATE autos SET nombre = ?, descripcion = ?, anio = ?, kilometraje = ?, precio = ? WHERE id = ?';
+        db.query(sql, [nombre, descripcion, anio, kilometraje, precio, id], (err, result) => {
+        if(err) throw err;
+        res.json({'message': 'Auto modificado'});
+        });    
+    }
+        
+    
 };
 
 module.exports = {
