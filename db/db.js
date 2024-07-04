@@ -2,7 +2,7 @@ const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
     host: 'mysql-grupo11.alwaysdata.net',
-    user: 'gruppo11',
+    user: 'grupo11',
     password: 'Nsnada_22',
     database: 'grupo11_db_autos'
 });
