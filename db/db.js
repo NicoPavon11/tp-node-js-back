@@ -4,7 +4,7 @@ const connection = mysql.createConnection({
     host: 'mysql-grupo11.alwaysdata.net',
     user: 'gruppo11',
     password: 'Nsnada_22',
-    database: 'db_autos'
+    database: 'grupo11_db_autos'
 });
 
 connection.connect((err) => {
