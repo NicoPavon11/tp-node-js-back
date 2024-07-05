@@ -19,7 +19,7 @@ para manejar las rutas que comiencen con /autos
 app.use('/autos', rutasAutos);
 
 //Definimos el puerto de nuestro servidor
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 //Iniciamos el servidor
 app.listen(PORT, () => {
